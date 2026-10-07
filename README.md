@@ -33,6 +33,11 @@ Everything below is in that one folder:
   `POINT_LEVEL_MIGRATION_VALIDATION.txt`: the Vector RAG database.
 
 ## Setup, step by step
+Put the repo in a **short folder path**, e.g. `C:\cdss` (Windows limits paths to 260 characters and some
+packages have very long file names; a long path makes `pip install` fail with "No such file or directory").
+```
+git clone https://github.com/rakshitha-dev9/cdss_integration.git C:\cdss
+```
 Open PowerShell in this repo folder.
 
 1. **Virtual environment**

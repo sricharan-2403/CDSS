@@ -11,7 +11,7 @@ What it does:
   3. Writes .gitignore, .env.example (safe defaults, keys EMPTY) and README.md (from setup\release_README.md).
   4. Safety scan: stops with an error if any .env / .venv / .git / .hf_cache / big file got in.
 Never touches the source folders (git archive is read-only). Never commits or pushes anything.
-A rebuild deletes cdss_release only if it carries our marker file (so a wrong folder is never deleted).
+A rebuild empties cdss_release (keeping its .git) only if it carries our marker file (a wrong folder is never touched).
 """
 
 import argparse
@@ -128,7 +128,8 @@ def copy_ours(dest):
 
 def safety_scan(dest):
     bad = []
-    for path in dest.rglob("*"):
+    files = [p for p in dest.rglob("*") if ".git" not in p.relative_to(dest).parts[:1]]  # skip the repo's own .git
+    for path in files:
         name = path.name.lower()
         if name in {".env", ".venv", ".git", ".hf_cache", "backups"} or (name.startswith(".env.")
                                                                           and name != ".env.example"):
@@ -141,7 +142,7 @@ def safety_scan(dest):
     from dotenv import dotenv_values
     secrets = [v for k, v in dotenv_values(INTEGRATION / ".env").items()
                if v and len(v) >= 8 and (k.endswith("_KEY") or k.startswith("CF_"))]
-    for path in dest.rglob("*"):
+    for path in files:
         if path.is_file() and path.stat().st_size < 20 * 1024 * 1024:
             data = path.read_bytes()
             if any(s.encode() in data for s in secrets):
@@ -165,7 +166,9 @@ def main():
     if OUT.exists():
         if not (OUT / MARKER).is_file():
             raise SystemExit(f"{OUT} exists but was not made by this script (no {MARKER}) - not deleting it.")
-        shutil.rmtree(OUT)
+        for item in OUT.iterdir():  # keep the team repo's own .git (history, remote)
+            if item.name != ".git":
+                shutil.rmtree(item) if item.is_dir() else item.unlink()
     (OUT / "agents").mkdir(parents=True)
     (OUT / MARKER).write_text("made by setup\\export_release.py; safe to rebuild\n", encoding="utf-8")
 
