@@ -1,0 +1,10 @@
+[
+  {
+    "id": "case1_mi_sildenafil",
+    "patient_text": "56 year old man with chest pain, sweating and shortness of breath. History of myocardial infarction. Currently taking sildenafil."
+  },
+  {
+    "id": "case2_fever_cough_test_text",
+    "patient_text": "34 year old woman with fever, cough and sore throat for three days. No regular medications."
+  }
+]

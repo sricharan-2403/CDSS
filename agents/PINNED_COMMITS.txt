@@ -1,0 +1,6 @@
+# folder  commit  source  (read by the pipeline when the folder has no .git)
+kg_agent  cb9d20a  https://github.com/rakshitha-dev9/kg_agent
+evidence_scanner  d4fc935  https://github.com/VaishnaviKoosam/evidence_scanner
+Symptom_RAG_Frozen  7a80dfc  https://github.com/sricharan-2403/Symptom_RAG_Frozen
+clinical_text_clarifier  51dacaf  https://github.com/varshith-3011/clinical_text_clarifier
+Medico  38a634f  https://github.com/charanya-reddy/Medico

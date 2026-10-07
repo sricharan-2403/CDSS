@@ -1,0 +1,19 @@
+.env
+.env.*
+!.env.example
+.venv/
+.hf_cache/
+__pycache__/
+*.pyc
+.pytest_cache/
+.groq_limits.json
+results/
+leakage_check/
+backups/
+downloads/
+.cdss_release_marker
+# KG data comes from the team Google Drive zip (see README), never from git
+*.pkl
+agents/kg_agent/data_sources/
+agents/kg_agent/*.csv
+agents/kg_agent/hp.json

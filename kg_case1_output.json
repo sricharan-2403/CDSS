@@ -1,0 +1,861 @@
+{
+  "agent": "knowledge_graph",
+  "status": "success",
+  "known_diseases": [
+    "Myocardial Infarction"
+  ],
+  "disease_prediction": {
+    "status": "success",
+    "input_symptoms": [
+      "chest pain",
+      "sweating",
+      "shortness of breath"
+    ],
+    "normalized_symptoms": {
+      "chest pain": "Chest pain",
+      "sweating": "Hyperhidrosis",
+      "shortness of breath": "Dyspnea"
+    },
+    "symptoms_not_found": [],
+    "metadata": {
+      "input_symptom_count": 3,
+      "symptoms_matched_count": 3,
+      "symptoms_not_found_count": 0,
+      "candidate_disease_count": 347
+    },
+    "candidate_diseases": [
+      {
+        "disease": "thymic carcinoma",
+        "matched_symptom_count": 3,
+        "total_documented_symptoms": 13,
+        "coverage_fraction": 0.23076923076923078,
+        "matched_symptoms": [
+          "chest pain",
+          "shortness of breath",
+          "sweating"
+        ]
+      },
+      {
+        "disease": "Hodgkins lymphoma",
+        "matched_symptom_count": 3,
+        "total_documented_symptoms": 17,
+        "coverage_fraction": 0.17647058823529413,
+        "matched_symptoms": [
+          "chest pain",
+          "shortness of breath",
+          "sweating"
+        ]
+      },
+      {
+        "disease": "monosodium glutamate sensitivity",
+        "matched_symptom_count": 2,
+        "total_documented_symptoms": 7,
+        "coverage_fraction": 0.2857142857142857,
+        "matched_symptoms": [
+          "chest pain",
+          "shortness of breath"
+        ]
+      },
+      {
+        "disease": "pulmonary blastoma",
+        "matched_symptom_count": 2,
+        "total_documented_symptoms": 7,
+        "coverage_fraction": 0.2857142857142857,
+        "matched_symptoms": [
+          "chest pain",
+          "shortness of breath"
+        ]
+      },
+      {
+        "disease": "aneurysm of sinus of Valsalva",
+        "matched_symptom_count": 2,
+        "total_documented_symptoms": 8,
+        "coverage_fraction": 0.25,
+        "matched_symptoms": [
+          "chest pain",
+          "shortness of breath"
+        ]
+      }
+    ],
+    "selection": {
+      "recognised_symptom_count": 3,
+      "min_matches_required": 2,
+      "candidates_before_threshold": 347,
+      "candidates_after_threshold": 58,
+      "top_k": 5,
+      "tie_at_cutoff": false
+    }
+  },
+  "medication_safety": {
+    "agent": "knowledge_graph_safety",
+    "status": "success",
+    "diseases_checked": [
+      "myocardial infarction",
+      "thymic carcinoma",
+      "Hodgkins lymphoma",
+      "monosodium glutamate sensitivity",
+      "pulmonary blastoma",
+      "aneurysm of sinus of Valsalva"
+    ],
+    "diseases_not_found": [],
+    "medications_input": [
+      "Sildenafil"
+    ],
+    "medications_matched": {
+      "Sildenafil": "Sildenafil"
+    },
+    "medications_not_checked": [],
+    "warnings": [
+      {
+        "tier": 1,
+        "type": "contraindication",
+        "disease": "myocardial infarction",
+        "disease_source": "known",
+        "medications": [
+          "Sildenafil"
+        ],
+        "path": "Sildenafil -[contraindication]- myocardial infarction",
+        "message": "Sildenafil is recorded as contraindicated in myocardial infarction.",
+        "severity": "unknown",
+        "severity_source": null
+      },
+      {
+        "tier": 3,
+        "type": "treatment_interaction_summary",
+        "disease": "myocardial infarction",
+        "disease_source": "known",
+        "medications": [
+          "Sildenafil"
+        ],
+        "path": "myocardial infarction -[indication/off-label use]- <treatment drug> -[drug_drug]- Sildenafil",
+        "message": "16 of 18 treatment drugs for myocardial infarction have a recorded interaction with Sildenafil (Moderate: 1, Unknown: 15); e.g. Dicoumarol, Acetylsalicylic acid, Alteplase, Ardeparin, Atenolol, ...",
+        "interacting_count": 16,
+        "treatment_drug_count": 18,
+        "examples": [
+          "Dicoumarol",
+          "Acetylsalicylic acid",
+          "Alteplase",
+          "Ardeparin",
+          "Atenolol"
+        ],
+        "details": [
+          {
+            "drug": "Acetylsalicylic acid",
+            "link_type": "indication",
+            "severity": "unknown",
+            "severity_source": "DDInter"
+          },
+          {
+            "drug": "Alteplase",
+            "link_type": "indication",
+            "severity": "unknown",
+            "severity_source": null
+          },
+          {
+            "drug": "Ardeparin",
+            "link_type": "off-label use",
+            "severity": "unknown",
+            "severity_source": null
+          },
+          {
+            "drug": "Atenolol",
+            "link_type": "indication",
+            "severity": "unknown",
+            "severity_source": null
+          },
+          {
+            "drug": "Dalteparin",
+            "link_type": "off-label use",
+            "severity": "unknown",
+            "severity_source": null
+          },
+          {
+            "drug": "Dicoumarol",
+            "link_type": "indication",
+            "severity": "moderate",
+            "severity_source": "DDInter"
+          },
+          {
+            "drug": "Enoxaparin",
+            "link_type": "off-label use",
+            "severity": "unknown",
+            "severity_source": null
+          },
+          {
+            "drug": "Fondaparinux",
+            "link_type": "off-label use",
+            "severity": "unknown",
+            "severity_source": null
+          },
+          {
+            "drug": "Heparin",
+            "link_type": "off-label use",
+            "severity": "unknown",
+            "severity_source": "DDInter"
+          },
+          {
+            "drug": "Lisinopril",
+            "link_type": "indication",
+            "severity": "unknown",
+            "severity_source": null
+          },
+          {
+            "drug": "Metoprolol",
+            "link_type": "indication",
+            "severity": "unknown",
+            "severity_source": null
+          },
+          {
+            "drug": "Nitroglycerin",
+            "link_type": "off-label use",
+            "severity": "unknown",
+            "severity_source": null
+          },
+          {
+            "drug": "Parnaparin",
+            "link_type": "off-label use",
+            "severity": "unknown",
+            "severity_source": null
+          },
+          {
+            "drug": "Phenprocoumon",
+            "link_type": "indication",
+            "severity": "unknown",
+            "severity_source": null
+          },
+          {
+            "drug": "Reteplase",
+            "link_type": "indication",
+            "severity": "unknown",
+            "severity_source": null
+          },
+          {
+            "drug": "Tenecteplase",
+            "link_type": "indication",
+            "severity": "unknown",
+            "severity_source": null
+          }
+        ],
+        "severity_counts": {
+          "major": 0,
+          "moderate": 1,
+          "minor": 0,
+          "unknown": 15
+        },
+        "severity": "moderate",
+        "severity_source": "DDInter"
+      },
+      {
+        "tier": 3,
+        "type": "treatment_interaction_summary",
+        "disease": "Hodgkins lymphoma",
+        "disease_source": "predicted",
+        "medications": [
+          "Sildenafil"
+        ],
+        "path": "Hodgkins lymphoma -[indication/off-label use]- <treatment drug> -[drug_drug]- Sildenafil",
+        "message": "12 of 23 treatment drugs for Hodgkins lymphoma have a recorded interaction with Sildenafil (Moderate: 2, Unknown: 10); e.g. Dexamethasone, Procarbazine, Betamethasone, Brentuximab vedotin, Cortisone acetate, ...",
+        "interacting_count": 12,
+        "treatment_drug_count": 23,
+        "examples": [
+          "Dexamethasone",
+          "Procarbazine",
+          "Betamethasone",
+          "Brentuximab vedotin",
+          "Cortisone acetate"
+        ],
+        "details": [
+          {
+            "drug": "Betamethasone",
+            "link_type": "indication",
+            "severity": "unknown",
+            "severity_source": null
+          },
+          {
+            "drug": "Brentuximab vedotin",
+            "link_type": "indication",
+            "severity": "unknown",
+            "severity_source": null
+          },
+          {
+            "drug": "Cortisone acetate",
+            "link_type": "indication",
+            "severity": "unknown",
+            "severity_source": null
+          },
+          {
+            "drug": "Dexamethasone",
+            "link_type": "indication",
+            "severity": "moderate",
+            "severity_source": "DDInter"
+          },
+          {
+            "drug": "Doxorubicin",
+            "link_type": "indication",
+            "severity": "unknown",
+            "severity_source": null
+          },
+          {
+            "drug": "Etoposide",
+            "link_type": "off-label use",
+            "severity": "unknown",
+            "severity_source": "DDInter"
+          },
+          {
+            "drug": "Hydrocortisone",
+            "link_type": "indication",
+            "severity": "unknown",
+            "severity_source": "DDInter"
+          },
+          {
+            "drug": "Hydrocortisone acetate",
+            "link_type": "indication",
+            "severity": "unknown",
+            "severity_source": null
+          },
+          {
+            "drug": "Procarbazine",
+            "link_type": "indication",
+            "severity": "moderate",
+            "severity_source": "DDInter"
+          },
+          {
+            "drug": "Triamcinolone",
+            "link_type": "indication",
+            "severity": "unknown",
+            "severity_source": "DDInter"
+          },
+          {
+            "drug": "Vinblastine",
+            "link_type": "indication",
+            "severity": "unknown",
+            "severity_source": null
+          },
+          {
+            "drug": "Vincristine",
+            "link_type": "indication",
+            "severity": "unknown",
+            "severity_source": null
+          }
+        ],
+        "severity_counts": {
+          "major": 0,
+          "moderate": 2,
+          "minor": 0,
+          "unknown": 10
+        },
+        "severity": "moderate",
+        "severity_source": "DDInter"
+      }
+    ],
+    "summary": {
+      "tier_1": 1,
+      "tier_2": 0,
+      "tier_3": 2,
+      "total": 3
+    },
+    "note": null,
+    "error": null,
+    "by_disease": [
+      {
+        "disease": "myocardial infarction",
+        "disease_source": "known",
+        "current_medication_problems": [
+          {
+            "medication": "Sildenafil",
+            "problem": "contraindicated in this disease",
+            "path": "Sildenafil -[contraindication]- myocardial infarction"
+          }
+        ],
+        "treatment_drug_count": 18,
+        "treatment_options": {
+          "already_taken_by_patient": [],
+          "no_known_clash": [
+            {
+              "drug": "Adomiparin",
+              "link_type": "off-label use",
+              "clashes_with": []
+            },
+            {
+              "drug": "Heparin, bovine",
+              "link_type": "off-label use",
+              "clashes_with": []
+            }
+          ],
+          "clash_minor_or_unknown": [
+            {
+              "drug": "Acetylsalicylic acid",
+              "link_type": "indication",
+              "clashes_with": [
+                {
+                  "medication": "Sildenafil",
+                  "severity": "unknown",
+                  "severity_source": "DDInter",
+                  "path": "myocardial infarction -[indication]- Acetylsalicylic acid -[drug_drug]- Sildenafil"
+                }
+              ]
+            },
+            {
+              "drug": "Alteplase",
+              "link_type": "indication",
+              "clashes_with": [
+                {
+                  "medication": "Sildenafil",
+                  "severity": "unknown",
+                  "severity_source": null,
+                  "path": "myocardial infarction -[indication]- Alteplase -[drug_drug]- Sildenafil"
+                }
+              ]
+            },
+            {
+              "drug": "Ardeparin",
+              "link_type": "off-label use",
+              "clashes_with": [
+                {
+                  "medication": "Sildenafil",
+                  "severity": "unknown",
+                  "severity_source": null,
+                  "path": "myocardial infarction -[off-label use]- Ardeparin -[drug_drug]- Sildenafil"
+                }
+              ]
+            },
+            {
+              "drug": "Atenolol",
+              "link_type": "indication",
+              "clashes_with": [
+                {
+                  "medication": "Sildenafil",
+                  "severity": "unknown",
+                  "severity_source": null,
+                  "path": "myocardial infarction -[indication]- Atenolol -[drug_drug]- Sildenafil"
+                }
+              ]
+            },
+            {
+              "drug": "Dalteparin",
+              "link_type": "off-label use",
+              "clashes_with": [
+                {
+                  "medication": "Sildenafil",
+                  "severity": "unknown",
+                  "severity_source": null,
+                  "path": "myocardial infarction -[off-label use]- Dalteparin -[drug_drug]- Sildenafil"
+                }
+              ]
+            },
+            {
+              "drug": "Enoxaparin",
+              "link_type": "off-label use",
+              "clashes_with": [
+                {
+                  "medication": "Sildenafil",
+                  "severity": "unknown",
+                  "severity_source": null,
+                  "path": "myocardial infarction -[off-label use]- Enoxaparin -[drug_drug]- Sildenafil"
+                }
+              ]
+            },
+            {
+              "drug": "Fondaparinux",
+              "link_type": "off-label use",
+              "clashes_with": [
+                {
+                  "medication": "Sildenafil",
+                  "severity": "unknown",
+                  "severity_source": null,
+                  "path": "myocardial infarction -[off-label use]- Fondaparinux -[drug_drug]- Sildenafil"
+                }
+              ]
+            },
+            {
+              "drug": "Heparin",
+              "link_type": "off-label use",
+              "clashes_with": [
+                {
+                  "medication": "Sildenafil",
+                  "severity": "unknown",
+                  "severity_source": "DDInter",
+                  "path": "myocardial infarction -[off-label use]- Heparin -[drug_drug]- Sildenafil"
+                }
+              ]
+            },
+            {
+              "drug": "Lisinopril",
+              "link_type": "indication",
+              "clashes_with": [
+                {
+                  "medication": "Sildenafil",
+                  "severity": "unknown",
+                  "severity_source": null,
+                  "path": "myocardial infarction -[indication]- Lisinopril -[drug_drug]- Sildenafil"
+                }
+              ]
+            },
+            {
+              "drug": "Metoprolol",
+              "link_type": "indication",
+              "clashes_with": [
+                {
+                  "medication": "Sildenafil",
+                  "severity": "unknown",
+                  "severity_source": null,
+                  "path": "myocardial infarction -[indication]- Metoprolol -[drug_drug]- Sildenafil"
+                }
+              ]
+            },
+            {
+              "drug": "Nitroglycerin",
+              "link_type": "off-label use",
+              "clashes_with": [
+                {
+                  "medication": "Sildenafil",
+                  "severity": "unknown",
+                  "severity_source": null,
+                  "path": "myocardial infarction -[off-label use]- Nitroglycerin -[drug_drug]- Sildenafil"
+                }
+              ]
+            },
+            {
+              "drug": "Parnaparin",
+              "link_type": "off-label use",
+              "clashes_with": [
+                {
+                  "medication": "Sildenafil",
+                  "severity": "unknown",
+                  "severity_source": null,
+                  "path": "myocardial infarction -[off-label use]- Parnaparin -[drug_drug]- Sildenafil"
+                }
+              ]
+            },
+            {
+              "drug": "Phenprocoumon",
+              "link_type": "indication",
+              "clashes_with": [
+                {
+                  "medication": "Sildenafil",
+                  "severity": "unknown",
+                  "severity_source": null,
+                  "path": "myocardial infarction -[indication]- Phenprocoumon -[drug_drug]- Sildenafil"
+                }
+              ]
+            },
+            {
+              "drug": "Reteplase",
+              "link_type": "indication",
+              "clashes_with": [
+                {
+                  "medication": "Sildenafil",
+                  "severity": "unknown",
+                  "severity_source": null,
+                  "path": "myocardial infarction -[indication]- Reteplase -[drug_drug]- Sildenafil"
+                }
+              ]
+            },
+            {
+              "drug": "Tenecteplase",
+              "link_type": "indication",
+              "clashes_with": [
+                {
+                  "medication": "Sildenafil",
+                  "severity": "unknown",
+                  "severity_source": null,
+                  "path": "myocardial infarction -[indication]- Tenecteplase -[drug_drug]- Sildenafil"
+                }
+              ]
+            }
+          ],
+          "clash_moderate": [
+            {
+              "drug": "Dicoumarol",
+              "link_type": "indication",
+              "clashes_with": [
+                {
+                  "medication": "Sildenafil",
+                  "severity": "moderate",
+                  "severity_source": "DDInter",
+                  "path": "myocardial infarction -[indication]- Dicoumarol -[drug_drug]- Sildenafil"
+                }
+              ]
+            }
+          ],
+          "clash_major": []
+        },
+        "note": null
+      },
+      {
+        "disease": "thymic carcinoma",
+        "disease_source": "predicted",
+        "current_medication_problems": [],
+        "treatment_drug_count": 0,
+        "treatment_options": {
+          "already_taken_by_patient": [],
+          "no_known_clash": [],
+          "clash_minor_or_unknown": [],
+          "clash_moderate": [],
+          "clash_major": []
+        },
+        "note": "The graph lists no treatment drugs for this disease."
+      },
+      {
+        "disease": "Hodgkins lymphoma",
+        "disease_source": "predicted",
+        "current_medication_problems": [],
+        "treatment_drug_count": 23,
+        "treatment_options": {
+          "already_taken_by_patient": [],
+          "no_known_clash": [
+            {
+              "drug": "Bleomycin",
+              "link_type": "indication",
+              "clashes_with": []
+            },
+            {
+              "drug": "Carmustine",
+              "link_type": "indication",
+              "clashes_with": []
+            },
+            {
+              "drug": "Chlorambucil",
+              "link_type": "indication",
+              "clashes_with": []
+            },
+            {
+              "drug": "Dacarbazine",
+              "link_type": "indication",
+              "clashes_with": []
+            },
+            {
+              "drug": "Epirubicin",
+              "link_type": "off-label use",
+              "clashes_with": []
+            },
+            {
+              "drug": "Lomustine",
+              "link_type": "indication",
+              "clashes_with": []
+            },
+            {
+              "drug": "Mechlorethamine",
+              "link_type": "indication",
+              "clashes_with": []
+            },
+            {
+              "drug": "Methylprednisolone",
+              "link_type": "indication",
+              "clashes_with": []
+            },
+            {
+              "drug": "Prednisolone",
+              "link_type": "indication",
+              "clashes_with": []
+            },
+            {
+              "drug": "Prednisone",
+              "link_type": "indication",
+              "clashes_with": []
+            },
+            {
+              "drug": "Thiotepa",
+              "link_type": "indication",
+              "clashes_with": []
+            }
+          ],
+          "clash_minor_or_unknown": [
+            {
+              "drug": "Betamethasone",
+              "link_type": "indication",
+              "clashes_with": [
+                {
+                  "medication": "Sildenafil",
+                  "severity": "unknown",
+                  "severity_source": null,
+                  "path": "Hodgkins lymphoma -[indication]- Betamethasone -[drug_drug]- Sildenafil"
+                }
+              ]
+            },
+            {
+              "drug": "Brentuximab vedotin",
+              "link_type": "indication",
+              "clashes_with": [
+                {
+                  "medication": "Sildenafil",
+                  "severity": "unknown",
+                  "severity_source": null,
+                  "path": "Hodgkins lymphoma -[indication]- Brentuximab vedotin -[drug_drug]- Sildenafil"
+                }
+              ]
+            },
+            {
+              "drug": "Cortisone acetate",
+              "link_type": "indication",
+              "clashes_with": [
+                {
+                  "medication": "Sildenafil",
+                  "severity": "unknown",
+                  "severity_source": null,
+                  "path": "Hodgkins lymphoma -[indication]- Cortisone acetate -[drug_drug]- Sildenafil"
+                }
+              ]
+            },
+            {
+              "drug": "Doxorubicin",
+              "link_type": "indication",
+              "clashes_with": [
+                {
+                  "medication": "Sildenafil",
+                  "severity": "unknown",
+                  "severity_source": null,
+                  "path": "Hodgkins lymphoma -[indication]- Doxorubicin -[drug_drug]- Sildenafil"
+                }
+              ]
+            },
+            {
+              "drug": "Etoposide",
+              "link_type": "off-label use",
+              "clashes_with": [
+                {
+                  "medication": "Sildenafil",
+                  "severity": "unknown",
+                  "severity_source": "DDInter",
+                  "path": "Hodgkins lymphoma -[off-label use]- Etoposide -[drug_drug]- Sildenafil"
+                }
+              ]
+            },
+            {
+              "drug": "Hydrocortisone",
+              "link_type": "indication",
+              "clashes_with": [
+                {
+                  "medication": "Sildenafil",
+                  "severity": "unknown",
+                  "severity_source": "DDInter",
+                  "path": "Hodgkins lymphoma -[indication]- Hydrocortisone -[drug_drug]- Sildenafil"
+                }
+              ]
+            },
+            {
+              "drug": "Hydrocortisone acetate",
+              "link_type": "indication",
+              "clashes_with": [
+                {
+                  "medication": "Sildenafil",
+                  "severity": "unknown",
+                  "severity_source": null,
+                  "path": "Hodgkins lymphoma -[indication]- Hydrocortisone acetate -[drug_drug]- Sildenafil"
+                }
+              ]
+            },
+            {
+              "drug": "Triamcinolone",
+              "link_type": "indication",
+              "clashes_with": [
+                {
+                  "medication": "Sildenafil",
+                  "severity": "unknown",
+                  "severity_source": "DDInter",
+                  "path": "Hodgkins lymphoma -[indication]- Triamcinolone -[drug_drug]- Sildenafil"
+                }
+              ]
+            },
+            {
+              "drug": "Vinblastine",
+              "link_type": "indication",
+              "clashes_with": [
+                {
+                  "medication": "Sildenafil",
+                  "severity": "unknown",
+                  "severity_source": null,
+                  "path": "Hodgkins lymphoma -[indication]- Vinblastine -[drug_drug]- Sildenafil"
+                }
+              ]
+            },
+            {
+              "drug": "Vincristine",
+              "link_type": "indication",
+              "clashes_with": [
+                {
+                  "medication": "Sildenafil",
+                  "severity": "unknown",
+                  "severity_source": null,
+                  "path": "Hodgkins lymphoma -[indication]- Vincristine -[drug_drug]- Sildenafil"
+                }
+              ]
+            }
+          ],
+          "clash_moderate": [
+            {
+              "drug": "Dexamethasone",
+              "link_type": "indication",
+              "clashes_with": [
+                {
+                  "medication": "Sildenafil",
+                  "severity": "moderate",
+                  "severity_source": "DDInter",
+                  "path": "Hodgkins lymphoma -[indication]- Dexamethasone -[drug_drug]- Sildenafil"
+                }
+              ]
+            },
+            {
+              "drug": "Procarbazine",
+              "link_type": "indication",
+              "clashes_with": [
+                {
+                  "medication": "Sildenafil",
+                  "severity": "moderate",
+                  "severity_source": "DDInter",
+                  "path": "Hodgkins lymphoma -[indication]- Procarbazine -[drug_drug]- Sildenafil"
+                }
+              ]
+            }
+          ],
+          "clash_major": []
+        },
+        "note": null
+      },
+      {
+        "disease": "monosodium glutamate sensitivity",
+        "disease_source": "predicted",
+        "current_medication_problems": [],
+        "treatment_drug_count": 0,
+        "treatment_options": {
+          "already_taken_by_patient": [],
+          "no_known_clash": [],
+          "clash_minor_or_unknown": [],
+          "clash_moderate": [],
+          "clash_major": []
+        },
+        "note": "The graph lists no treatment drugs for this disease."
+      },
+      {
+        "disease": "pulmonary blastoma",
+        "disease_source": "predicted",
+        "current_medication_problems": [],
+        "treatment_drug_count": 0,
+        "treatment_options": {
+          "already_taken_by_patient": [],
+          "no_known_clash": [],
+          "clash_minor_or_unknown": [],
+          "clash_moderate": [],
+          "clash_major": []
+        },
+        "note": "The graph lists no treatment drugs for this disease."
+      },
+      {
+        "disease": "aneurysm of sinus of Valsalva",
+        "disease_source": "predicted",
+        "current_medication_problems": [],
+        "treatment_drug_count": 0,
+        "treatment_options": {
+          "already_taken_by_patient": [],
+          "no_known_clash": [],
+          "clash_minor_or_unknown": [],
+          "clash_moderate": [],
+          "clash_major": []
+        },
+        "note": "The graph lists no treatment drugs for this disease."
+      }
+    ],
+    "medication_pair_clashes": []
+  },
+  "error": null
+}

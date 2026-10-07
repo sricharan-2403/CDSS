@@ -1,0 +1,15 @@
+{
+  "clinical_text": "Patient with a history of myocardial infarction, taking sildenafil, presents with chest pain, sweating and shortness of breath.",
+  "diseases": [
+    "myocardial infarction"
+  ],
+  "symptoms": [
+    "chest pain",
+    "sweating",
+    "shortness of breath"
+  ],
+  "medications": [
+    "sildenafil"
+  ],
+  "tests": []
+}

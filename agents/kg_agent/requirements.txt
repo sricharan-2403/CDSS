@@ -1,0 +1,10 @@
+# Versions installed on the development machine (Python 3.13.6).
+
+# Needed to run the Knowledge Graph agent
+pandas==2.2.3
+networkx==3.6.1
+
+# Needed only by helper scripts
+requests==2.32.3     # fetch_and_filter_primekg.py (downloads PrimeKG kg.csv)
+psutil==7.2.2        # build_full_graph.py (optional memory report)
+matplotlib==3.11.1   # visualize_real_graph.py

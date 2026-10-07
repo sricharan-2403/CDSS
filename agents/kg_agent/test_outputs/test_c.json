@@ -1,0 +1,31 @@
+{
+  "status": "success",
+  "input_symptoms": [
+    "zorblax",
+    "quimflet"
+  ],
+  "normalized_symptoms": {
+    "zorblax": "zorblax",
+    "quimflet": "quimflet"
+  },
+  "symptoms_not_found": [
+    "zorblax",
+    "quimflet"
+  ],
+  "metadata": {
+    "input_symptom_count": 2,
+    "symptoms_matched_count": 0,
+    "symptoms_not_found_count": 2,
+    "candidate_disease_count": 0
+  },
+  "candidate_diseases": [],
+  "selection": {
+    "recognised_symptom_count": 0,
+    "min_matches_required": null,
+    "candidates_before_threshold": 0,
+    "candidates_after_threshold": 0,
+    "top_k": 5,
+    "tie_at_cutoff": false,
+    "note": "No input symptoms were recognised in the graph; nothing selected."
+  }
+}

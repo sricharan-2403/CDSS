@@ -1,0 +1,49 @@
+# Combined requirements for the CDSS integration environment
+# Python 3.13.6 (Windows). Created 2026-10-01. Approved 2026-10-01
+# (pandas 2.2.3 kept with numpy 2.4.6). qdrant-client set to 1.19.0 on
+# 2026-10-02 to match the version that built Sri Charan's data\qdrant index.
+#
+# Only packages that the code actually IMPORTS are listed (plus a few
+# version anchors). Packages pulled in indirectly are resolved by pip and
+# recorded afterwards in requirements_lock.txt.
+# The full pip-freeze lists in Medico and the Clarifier are NOT copied:
+# they pin unrelated packages (crewai, chromadb, pymatgen, ...) and create
+# pointless version clashes.
+
+# --- Shared / multiple agents ---
+requests==2.34.2            # Evidence Scanner, Vector RAG scripts, KG helper script
+python-dotenv==1.2.3        # Evidence Scanner, Vector RAG, Fusion
+numpy==2.4.6                # Clarifier pin; Vector RAG needs >=1.24
+networkx==3.6.1             # KG agent (same pin in Clarifier/Medico)
+pydantic==2.13.5            # Clarifier models.py; also langchain / google-genai / fastapi
+
+# --- Knowledge Graph agent (code\) ---
+pandas==2.2.3
+psutil==7.2.2               # optional memory report
+matplotlib==3.11.1          # visualize_real_graph.py only
+
+# --- Evidence Scanner + Fusion ---
+langgraph==1.2.11
+langchain-openai==1.5.1     # Fusion (Medico) - LLM client for OpenRouter
+
+# --- Clarifier ---
+groq==1.7.0                 # NEW Clarifier (clinical_text_clarifier, Varshit): 1 Groq call per case
+torch==2.13.0               # CPU wheel from PyPI on Windows
+transformers==5.15.0
+tokenizers==0.22.2
+huggingface_hub==1.27.0
+safetensors==0.8.0
+spacy==3.8.16
+negspacy==1.1.0
+fastapi==0.141.1
+uvicorn==0.52.3
+# en_core_web_sm is installed separately with: python -m spacy download en_core_web_sm
+
+# --- Vector RAG ---
+sentence-transformers==5.7.0  # = version Sri Charan used to build data\qdrant (changed from 6.1.0 on 2026-10-02)
+qdrant-client==1.19.0       # = version Sri Charan used to build data\qdrant (changed from 1.19.1 on 2026-10-02)
+PyMuPDF==1.28.2
+google-genai==2.26.0
+
+# --- Tests ---
+pytest==9.1.1

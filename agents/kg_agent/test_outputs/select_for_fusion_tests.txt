@@ -1,0 +1,78 @@
+select_for_fusion() test results
+Generated: 2026-09-29 16:07:23 India Standard Time
+Pipeline: predict_disease() -> select_for_fusion(top_k=5)
+
+====================================================================================================
+TEST (a)
+====================================================================================================
+Input symptoms:     fever, cough, headache, fatigue
+symptoms_not_found: (none)
+
+Selected diseases:
+  rank  disease                          matched  coverage  matched symptoms
+  ----  -------------------------------  -------  --------  ----------------
+     1  Pontiac fever                          4    80.00%  cough, fatigue, fever, headache
+     2  Hughes-Stovin syndrome                 4    28.57%  cough, fatigue, fever, headache
+     3  Nipah virus disease                    4    26.67%  cough, fatigue, fever, headache
+     4  Hodgkins lymphoma                      4    23.53%  cough, fatigue, fever, headache
+     5  Crimean-Congo hemorrhagic fever        4    22.22%  cough, fatigue, fever, headache
+
+Selection block:
+  {
+    "recognised_symptom_count": 4,
+    "min_matches_required": 2,
+    "candidates_before_threshold": 635,
+    "candidates_after_threshold": 204,
+    "top_k": 5,
+    "tie_at_cutoff": false
+  }
+
+====================================================================================================
+TEST (b)
+====================================================================================================
+Input symptoms:     fever, cough, headache, breathlessness
+symptoms_not_found: breathlessness
+
+Selected diseases:
+  rank  disease                                      matched  coverage  matched symptoms
+  ----  -------------------------------------------  -------  --------  ----------------
+     1  Pontiac fever                                      3    60.00%  cough, fever, headache
+     2  febrile infection-related epilepsy syndrome        3    27.27%  cough, fever, headache
+     3  severe acute respiratory syndrome                  3    25.00%  cough, fever, headache
+     4  Hughes-Stovin syndrome                             3    21.43%  cough, fever, headache
+     5  Nipah virus disease                                3    20.00%  cough, fever, headache
+
+Selection block:
+  {
+    "recognised_symptom_count": 3,
+    "min_matches_required": 2,
+    "candidates_before_threshold": 497,
+    "candidates_after_threshold": 112,
+    "top_k": 5,
+    "tie_at_cutoff": false
+  }
+
+====================================================================================================
+TEST (c)
+====================================================================================================
+Input symptoms:     zorblax, quimflet
+symptoms_not_found: zorblax, quimflet
+
+Selected diseases:
+  (none - candidate_diseases is empty)
+
+Selection block:
+  {
+    "recognised_symptom_count": 0,
+    "min_matches_required": null,
+    "candidates_before_threshold": 0,
+    "candidates_after_threshold": 0,
+    "top_k": 5,
+    "tie_at_cutoff": false,
+    "note": "No input symptoms were recognised in the graph; nothing selected."
+  }
+
+====================================================================================================
+NOTE
+====================================================================================================
+predict_disease() orders exactly tied diseases differently between runs (Python set ordering). select_for_fusion() uses an alphabetical tie-breaker, so its output is the same on every run.

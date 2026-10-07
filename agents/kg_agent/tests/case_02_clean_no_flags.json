@@ -1,0 +1,6 @@
+{
+  "diseases": ["hypertension"],
+  "symptoms": ["headache", "dizziness"],
+  "medications": ["Amoxicillin"],
+  "tests": []
+}

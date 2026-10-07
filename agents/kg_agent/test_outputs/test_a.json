@@ -1,0 +1,92 @@
+{
+  "status": "success",
+  "input_symptoms": [
+    "fever",
+    "cough",
+    "headache",
+    "fatigue"
+  ],
+  "normalized_symptoms": {
+    "fever": "Fever",
+    "cough": "Cough",
+    "headache": "Headache",
+    "fatigue": "Fatigue"
+  },
+  "symptoms_not_found": [],
+  "metadata": {
+    "input_symptom_count": 4,
+    "symptoms_matched_count": 4,
+    "symptoms_not_found_count": 0,
+    "candidate_disease_count": 635
+  },
+  "candidate_diseases": [
+    {
+      "disease": "Pontiac fever",
+      "matched_symptom_count": 4,
+      "total_documented_symptoms": 5,
+      "coverage_fraction": 0.8,
+      "matched_symptoms": [
+        "cough",
+        "fatigue",
+        "fever",
+        "headache"
+      ]
+    },
+    {
+      "disease": "Hughes-Stovin syndrome",
+      "matched_symptom_count": 4,
+      "total_documented_symptoms": 14,
+      "coverage_fraction": 0.2857142857142857,
+      "matched_symptoms": [
+        "cough",
+        "fatigue",
+        "fever",
+        "headache"
+      ]
+    },
+    {
+      "disease": "Nipah virus disease",
+      "matched_symptom_count": 4,
+      "total_documented_symptoms": 15,
+      "coverage_fraction": 0.26666666666666666,
+      "matched_symptoms": [
+        "cough",
+        "fatigue",
+        "fever",
+        "headache"
+      ]
+    },
+    {
+      "disease": "Hodgkins lymphoma",
+      "matched_symptom_count": 4,
+      "total_documented_symptoms": 17,
+      "coverage_fraction": 0.23529411764705882,
+      "matched_symptoms": [
+        "cough",
+        "fatigue",
+        "fever",
+        "headache"
+      ]
+    },
+    {
+      "disease": "Crimean-Congo hemorrhagic fever",
+      "matched_symptom_count": 4,
+      "total_documented_symptoms": 18,
+      "coverage_fraction": 0.2222222222222222,
+      "matched_symptoms": [
+        "cough",
+        "fatigue",
+        "fever",
+        "headache"
+      ]
+    }
+  ],
+  "selection": {
+    "recognised_symptom_count": 4,
+    "min_matches_required": 2,
+    "candidates_before_threshold": 635,
+    "candidates_after_threshold": 204,
+    "top_k": 5,
+    "tie_at_cutoff": false
+  }
+}

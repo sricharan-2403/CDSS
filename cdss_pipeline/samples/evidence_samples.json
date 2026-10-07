@@ -1,0 +1,94 @@
+{
+  "unstable angina": {
+    "hypothesis": "unstable angina",
+    "broadened": false,
+    "evidence": [
+      {
+        "tier_label": "Systematic Review / Meta-Analysis",
+        "score": 100.0,
+        "title": "Efficacy and safety of Ginkgo biloba extract in the treatment of unstable angina pectoris: A systematic review and network meta-analysis.",
+        "summary": "Ginkgo biloba is a traditional Chinese medicine extracted from the Ginkgophyta and is commonly used in the treatment of cardiovascular diseases in China.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/38718890/",
+        "source": "PubMed"
+      },
+      {
+        "tier_label": "Systematic Review / Meta-Analysis",
+        "score": 100.0,
+        "title": "The efficacy and safety of Xueshuantong (lyophilized) for injection in the treatment of unstable angina pectoris: A systematic review and meta-analysis.",
+        "summary": "Objective: Xueshuantong (lyophilized) for injection (XST) isan effective botanical drug for treating unstable angina pectoris (UAP).",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/37089918/",
+        "source": "PubMed"
+      },
+      {
+        "tier_label": "Systematic Review / Meta-Analysis",
+        "score": 100.0,
+        "title": "A Systematic Review and Meta-Analysis on the Efficacy of Puerarin Injection as Adjunctive Therapy for Unstable Angina Pectoris.",
+        "summary": "As adjunctive therapy, puerarin injection has been widely applied for the treatment of unstable angina pectoris (UAP) in China during the past decades.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/35282378/",
+        "source": "PubMed"
+      },
+      {
+        "tier_label": "Systematic Review / Meta-Analysis",
+        "score": 100.0,
+        "title": "Effectiveness and safety of Breviscapine in the treatment of coronary heart disease: a meta-analysis of randomized controlled trials",
+        "summary": "No abstract available for: Effectiveness and safety of Breviscapine in the treatment of coronary heart disease: a meta-analysis of randomized controlled trials",
+        "url": "https://europepmc.org/article/PMC/PMC13612275",
+        "source": "EuropePMC"
+      },
+      {
+        "tier_label": "Systematic Review / Meta-Analysis",
+        "score": 100.0,
+        "title": "Cardiovascular disease and amyloidosis in phase III multiple myeloma trials: a systematic review of eligibility, screening and event reporting.",
+        "summary": "<h4>Background</h4>Cardiovascular disease (CVD) and light chain (AL) amyloidosis are important causes of morbidity and mortality in patients with multiple myeloma (MM).",
+        "url": "https://europepmc.org/article/MED/42680232",
+        "source": "EuropePMC"
+      }
+    ]
+  },
+  "type 2 diabetes": {
+    "hypothesis": "type 2 diabetes",
+    "broadened": false,
+    "evidence": [
+      {
+        "tier_label": "Systematic Review / Meta-Analysis",
+        "score": 100.0,
+        "title": "Risk of type 2 diabetes mellitus after gestational diabetes mellitus: A systematic review & meta-analysis.",
+        "summary": "Women with gestational diabetes are at an increased risk of being diagnosed as type 2 diabetes, but the postpartum screening rate is low.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34782531/",
+        "source": "PubMed"
+      },
+      {
+        "tier_label": "Systematic Review / Meta-Analysis",
+        "score": 100.0,
+        "title": "The effectiveness of lifestyle interventions for diabetes remission on patients with type 2 diabetes mellitus: A systematic review and meta-analysis.",
+        "summary": "Conventional wisdom affirmed that diabetes was irreversible,but current research shows that lifestyle interventions may achieve diabetes remission among patients with type 2 diabetes mellitus.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/36480153/",
+        "source": "PubMed"
+      },
+      {
+        "tier_label": "Systematic Review / Meta-Analysis",
+        "score": 100.0,
+        "title": "Improving type 2 diabetes mellitus glycaemic control through lifestyle modification implementing diet intervention: a systematic review and meta-analysis.",
+        "summary": "Type 2 diabetes mellitus represents a significant health problem.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/31781857/",
+        "source": "PubMed"
+      },
+      {
+        "tier_label": "Systematic Review / Meta-Analysis",
+        "score": 100.0,
+        "title": "The Role of Circulating Secreted Frizzled-Related Protein 4 (SFRP4) in Type 2 Diabetes Mellitus: A Systematic Review and Meta-Analysis.",
+        "summary": "Secreted frizzled-related protein 4 (SFRP4), an extracellular regulator of Wnt signaling, has been implicated in insulin resistance, β-celldysfunction, and inflammation associated with type 2 diabetes mellitus (T2DM).",
+        "url": "https://europepmc.org/article/MED/42759570",
+        "source": "EuropePMC"
+      },
+      {
+        "tier_label": "Systematic Review / Meta-Analysis",
+        "score": 100.0,
+        "title": "Correction: Risk factors for hypoglycemia in patients with type 2 diabetes mellitus: a systematic review and meta-analysis",
+        "summary": "No abstract available for: Correction: Risk factors for hypoglycemia in patients with type 2 diabetes mellitus: a systematic review and meta-analysis",
+        "url": "https://europepmc.org/article/PMC/PMC13621488",
+        "source": "EuropePMC"
+      }
+    ]
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "status": "success",
+  "input_symptoms": [
+    "fever",
+    "cough",
+    "headache",
+    "breathlessness"
+  ],
+  "normalized_symptoms": {
+    "fever": "Fever",
+    "cough": "Cough",
+    "headache": "Headache",
+    "breathlessness": "breathlessness"
+  },
+  "symptoms_not_found": [
+    "breathlessness"
+  ],
+  "metadata": {
+    "input_symptom_count": 4,
+    "symptoms_matched_count": 3,
+    "symptoms_not_found_count": 1,
+    "candidate_disease_count": 497
+  },
+  "candidate_diseases": [
+    {
+      "disease": "Pontiac fever",
+      "matched_symptom_count": 3,
+      "total_documented_symptoms": 5,
+      "coverage_fraction": 0.6,
+      "matched_symptoms": [
+        "cough",
+        "fever",
+        "headache"
+      ]
+    },
+    {
+      "disease": "febrile infection-related epilepsy syndrome",
+      "matched_symptom_count": 3,
+      "total_documented_symptoms": 11,
+      "coverage_fraction": 0.2727272727272727,
+      "matched_symptoms": [
+        "cough",
+        "fever",
+        "headache"
+      ]
+    },
+    {
+      "disease": "severe acute respiratory syndrome",
+      "matched_symptom_count": 3,
+      "total_documented_symptoms": 12,
+      "coverage_fraction": 0.25,
+      "matched_symptoms": [
+        "cough",
+        "fever",
+        "headache"
+      ]
+    },
+    {
+      "disease": "Hughes-Stovin syndrome",
+      "matched_symptom_count": 3,
+      "total_documented_symptoms": 14,
+      "coverage_fraction": 0.21428571428571427,
+      "matched_symptoms": [
+        "cough",
+        "fever",
+        "headache"
+      ]
+    },
+    {
+      "disease": "Nipah virus disease",
+      "matched_symptom_count": 3,
+      "total_documented_symptoms": 15,
+      "coverage_fraction": 0.2,
+      "matched_symptoms": [
+        "cough",
+        "fever",
+        "headache"
+      ]
+    }
+  ],
+  "selection": {
+    "recognised_symptom_count": 3,
+    "min_matches_required": 2,
+    "candidates_before_threshold": 497,
+    "candidates_after_threshold": 112,
+    "top_k": 5,
+    "tie_at_cutoff": false
+  }
+}

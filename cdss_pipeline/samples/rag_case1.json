@@ -1,0 +1,88 @@
+{
+  "agent": "symptom_rag",
+  "status": "success",
+  "query_context": {
+    "diseases": [
+      "Myocardial Infarction"
+    ],
+    "symptoms": [
+      "chest pain",
+      "sweating",
+      "shortness of breath"
+    ],
+    "medications": [
+      "Sildenafil"
+    ],
+    "tests": [],
+    "procedures": []
+  },
+  "diagnostic_candidates": [
+    {
+      "condition": "Myocardial Infarction (Heart Attack)",
+      "rank": 1,
+      "justification": "Evidence 2 explicitly describes classic signs and symptoms of a heart attack as crushing substernal chest pain, shortness of breath, and sweating, directly matching the patient's presentation. Evidence 5 further supports heart attack resulting from blocked coronary arteries.",
+      "supporting_evidence": [
+        2,
+        5
+      ]
+    },
+    {
+      "condition": "Heart Arrhythmia",
+      "rank": 2,
+      "justification": "Evidence 1 identifies chest pain or discomfort and shortness of breath as potential symptoms of heart arrhythmias, showing partial overlap with the patient's presentation.",
+      "supporting_evidence": [
+        1
+      ]
+    },
+    {
+      "condition": "Valvular Heart Disease",
+      "rank": 3,
+      "justification": "Evidence 4 notes that valvular heart disease can present with symptoms including chest pain and shortness of breath, overlapping with the patient's symptoms.",
+      "supporting_evidence": [
+        4
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "content": "d videos or visit Mayoclinic.org. We wish you well. Heart disease symptoms caused by irregular heartbeats (heart arrhythmias) The heart may beat too quickly, too slowly or irregularly. Heart arrhythmia symptoms can include:  Chest pain or discomfort Dizziness Fainting (syncope) or near fainting Fluttering in the chest Lightheadedness Racing heartbeat (tachycardia) Shortness of breath Slow heartbeat (bradycardia)  Heart disease symptoms caused by congenital heart defects Serious congenital heart defects usually are noticed soon after birth. Congenital heart defect symptoms in children could include:  Pale gray or blue skin or lips (cyanosis) Swelling in the legs, belly area or areas around the eyes In an infant, shortness of breath during feedings, leading to poor weight gain  Less-serious congenital heart defects are often not diagnosed until later in childhood or during adulthood. Symptoms of congenital heart defects that usually aren't immediately life-threatening include:  Easily ge",
+      "source": "symptom-disease-train-dataset.csv",
+      "source_type": "symptom-disease-dataset",
+      "location": "",
+      "relevance_score": 0.5996057202934357
+    },
+    {
+      "content": "if an artery becomes totally blocked, it leads to a heart attack. Classic signs and symptoms of a heart attack include crushing, substernal chest pain, pain in your shoulders or arms, shortness of breath, and sweating. However, many heart attacks have minimal or no symptoms and are found later during routine testing. How is it diagnosed? Diagnosing CAD starts by talking to your doctor. They'll be able to look at your medical history, do a physical exam and order routine blood work. Depending on that, they may suggest one or more of the following tests: an electrocardiogram or ECG, an echocardiogram or soundwave test of the heart, stress test, cardiac catheterization and angiogram, or a cardiac CT scan. CAD CT How is it treated? Treating coronary artery disease usually means making changes to your lifestyle. This might be eating healthier foods, exercising regularly, losing excess weight, reducing stress or quitting smoking. The good news is these changes can do a lot to improve your ou",
+      "source": "symptom-disease-train-dataset.csv",
+      "source_type": "symptom-disease-dataset",
+      "location": "",
+      "relevance_score": 0.5633557185506016
+    },
+    {
+      "content": "oms of congenital heart defects that usually aren't immediately life-threatening include:  Easily getting short of breath during exercise or activity Easily tiring during exercise or activity Swelling of the hands, ankles or feet  Heart disease symptoms caused by diseased heart muscle (cardiomyopathy) Early stages of cardiomyopathy may not cause noticeable symptoms. As the condition worsens, symptoms may include:  Dizziness, lightheadedness and fainting Fatigue Feeling short of breath during activity or at rest Feeling short of breath at night when trying to sleep or waking up short of breath Irregular heartbeats that feel rapid, pounding or fluttering Swollen legs, ankles or feet  Heart disease symptoms caused by heart valve problems (valvular heart disease) The heart has four valves — the aortic, mitral, pulmonary and tricuspid valves. They open and close to move blood through the heart. Many things can damage the heart valves. A heart valve may become narrowed (stenosis), leaky (reg",
+      "source": "symptom-disease-train-dataset.csv",
+      "source_type": "symptom-disease-dataset",
+      "location": "",
+      "relevance_score": 0.5277569858709024
+    },
+    {
+      "content": "t. Many things can damage the heart valves. A heart valve may become narrowed (stenosis), leaky (regurgitation or insufficiency) or close improperly (prolapse). Valvular heart disease is also called heart valve disease. Depending on which valve isn't working properly, heart valve disease symptoms generally include:  Chest pain Fainting (syncope) Fatigue Irregular heartbeat Shortness of breath Swollen feet or ankles  Endocarditis is an infection that affects the heart valves and inner lining of the heart chambers and heart valves (endocardium). Endocarditis symptoms can include:  Dry or persistent cough Fever Heartbeat changes Shortness of breath Skin rashes or unusual spots Swelling of the legs or belly area Weakness or fatigue",
+      "source": "symptom-disease-train-dataset.csv",
+      "source_type": "symptom-disease-dataset",
+      "location": "",
+      "relevance_score": 0.47161336495588235
+    },
+    {
+      "content": "ys a large role as well. Physical inactivity, long periods of unrelieved stress in your life, an unhealthy diet and smoking can all increase your risk. And finally, family history. If a close relative was diagnosed at an early age with heart disease, you're at a greater risk. All these factors together can paint a picture of your risk for developing CAD. CAD CAD What are the symptoms? When coronary arteries become narrow, the heart doesn't get enough oxygen-rich blood. Remember, unlike most pumps, the heart has to pump its own energy supply. It's working harder with less. And you may begin to notice these signs and symptoms of pressure or tightness in your chest. This pain is called angina. It may feel like somebody is standing on your chest. When your heart can't pump enough blood to meet your body's needs, you might develop shortness of breath or extreme fatigue during activities. And if an artery becomes totally blocked, it leads to a heart attack. Classic signs and symptoms of a he",
+      "source": "symptom-disease-train-dataset.csv",
+      "source_type": "symptom-disease-dataset",
+      "location": "",
+      "relevance_score": 0.4124129252351625
+    }
+  ],
+  "metadata": {
+    "evidence_count": 5
+  },
+  "limitations": "The retrieved passages do not contain information regarding the clinical risks or drug interactions associated with Sildenafil in a patient presenting with myocardial infarction. Additionally, symptom overlap across cardiac conditions requires objective testing (e.g., ECG, cardiac markers) for accurate differentiation. Retrieval similarity scores reflect search signals only and cannot be interpreted as diagnostic probabilities.",
+  "error": null
+}

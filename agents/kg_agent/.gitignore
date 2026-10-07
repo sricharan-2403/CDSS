@@ -1,0 +1,26 @@
+# PrimeKG data and the built graph (large; rebuild them, see README)
+/*.csv
+*.pkl
+
+# HPO ontology used to build symptom_synonyms_full.py (21 MB; see README)
+/hp.json
+
+# DDInter interaction data (CC BY-NC-SA 4.0; download it yourself, see README)
+data_sources/
+
+# Backups
+backups/
+backup/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Secrets
+.env
+.env.*
+*.key
+*.pem
+*secret*
+*credential*
+*password*
