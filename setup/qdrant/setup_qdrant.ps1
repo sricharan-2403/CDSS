@@ -4,6 +4,7 @@ Windows 10/11, PowerShell 5.1+, no Docker. Safe to run again: finished steps are
 
     powershell -ExecutionPolicy Bypass -File setup\qdrant\setup_qdrant.ps1 `
         -HandoffDir "<folder with Qdrant_Symptom_RAG_Handoff_v2.tar.gz>" [-QdrantDir "<where qdrant.exe + storage go>"]
+        [-Port 6333]   (another port only for a test install; the pipeline uses QDRANT_URL, default 6333)
 
 The V2 handoff is a packed Qdrant STORAGE folder, NOT a snapshot. Never upload it to the snapshot endpoint.
 Steps:
@@ -19,9 +20,10 @@ Never changes collection settings, never deletes or re-ingests data.
 param(
     [Parameter(Mandatory = $true)][string]$HandoffDir,
     [string]$QdrantDir = "",   # default set below ($PSScriptRoot is empty in param defaults on PS 5.1)
-    [string]$QdrantUrl = "http://127.0.0.1:6333"
+    [int]$Port = 6333          # HTTP port (gRPC = Port + 1); keep 6333 unless testing a second Qdrant
 )
 if (-not $QdrantDir) { $QdrantDir = Join-Path $PSScriptRoot "..\..\..\qdrant" }
+$QdrantUrl = "http://127.0.0.1:$Port"
 
 $ErrorActionPreference = "Stop"
 $ProgressPreference = "SilentlyContinue"   # Invoke-WebRequest is very slow with the progress bar
@@ -115,7 +117,10 @@ if (Test-Path $symptomDir) {
     }
     New-Item -ItemType Directory -Force $Storage | Out-Null
     Write-Host "extracting (about 1.9 GB) ..."
-    & tar.exe -xzf $archive -C $Storage
+    # Windows' own tar (bsdtar). A GNU tar found first on PATH (e.g. Git's) reads "C:" as a remote host.
+    $tar = Join-Path $env:SystemRoot "System32\tar.exe"
+    if (-not (Test-Path $tar)) { Fail "$tar not found (Windows 10 1803 or newer is needed)" }
+    & $tar -xzf $archive -C $Storage
     if ($LASTEXITCODE -ne 0) { Fail "tar.exe could not extract $archive (storage left as is for diagnosis)" }
     foreach ($name in $Expected.Keys) {
         if (-not (Test-Path (Join-Path $Storage "collections\$name"))) {
@@ -135,8 +140,8 @@ storage:
   temp_path: ./tmp
 service:
   host: 127.0.0.1
-  http_port: 6333
-  grpc_port: 6334
+  http_port: $Port
+  grpc_port: $($Port + 1)
 telemetry_disabled: true
 "@
 $configPath = Join-Path $QdrantDir "config.yaml"

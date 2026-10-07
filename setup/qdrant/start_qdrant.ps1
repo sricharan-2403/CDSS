@@ -13,5 +13,5 @@ if (-not (Test-Path $config)) { throw "config.yaml not found in $here - run setu
 
 Set-Location $here   # relative storage paths in config.yaml resolve from here
 $Host.UI.RawUI.WindowTitle = "Qdrant (CDSS) - keep this window open"
-Write-Host "Starting Qdrant from $here (http://127.0.0.1:6333). Keep this window open."
+Write-Host "Starting Qdrant from $here (port: see config.yaml, normally 6333). Keep this window open."
 & $exe --config-path $config

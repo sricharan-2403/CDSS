@@ -205,11 +205,15 @@ def _pinned_commit(folder):
     return ""
 
 
+def _has_own_git(folder):
+    return (Path(folder) / ".git").exists()
+
+
 def _git_commit(folder, expected, label):
     """Short commit of an agent folder via git (read-only), else from PINNED_COMMITS.txt.
     Never raises: "unknown" on failure."""
     commit = ""
-    if (Path(folder) / ".git").exists():  # only the folder's OWN repo (in cdss_release, git would see the parent)
+    if _has_own_git(folder):  # only the folder's OWN repo (in cdss_release, git would see the parent)
         try:
             proc = subprocess.run(["git", "-C", str(folder), "rev-parse", "--short", "HEAD"],
                                   capture_output=True, text=True, timeout=10)
@@ -546,8 +550,40 @@ def groq_requests_left_text():
     return text + ")"
 
 
+class _SemanticScholar429Once(logging.Filter):
+    """Her aggregator logs one warning per failed source call; without a Semantic Scholar key EVERY call
+    gets HTTP 429. Show that warning once per case (reset_case_warnings), hide the repeats (counted)."""
+
+    def __init__(self):
+        super().__init__()
+        self.shown, self.hidden = False, 0
+
+    def filter(self, record):
+        message = record.getMessage()
+        if "semantic_scholar_search" not in message or "HTTP 429" not in message:
+            return True
+        if self.shown:
+            self.hidden += 1
+            return False
+        self.shown = True
+        record.msg, record.args = (message + " (no Semantic Scholar API key; further 429s in this case "
+                                   "are not shown)"), ()
+        return True
+
+
+S2_429_FILTER = _SemanticScholar429Once()
+
+
+def reset_case_warnings():
+    """Call at the start of every case (run_pipeline.run)."""
+    S2_429_FILTER.shown, S2_429_FILTER.hidden = False, 0
+
+
 def _load_evidence_scanner():
     """Import Vaishnavi's scanner, check module origins, build its graph ONCE."""
+    aggregator_log = logging.getLogger("tools.evidence_aggregator")
+    if S2_429_FILTER not in aggregator_log.filters:
+        aggregator_log.addFilter(S2_429_FILTER)
     _put_first_on_path(config.EVIDENCE_DIR)
     import agents.evidence_scanner_agent as scanner_mod  # noqa: E402
     _check_package("agents", config.EVIDENCE_DIR / "agents")

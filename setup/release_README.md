@@ -18,7 +18,8 @@ The glue code is `cdss_pipeline\`.
 
 ## What your laptop needs
 - Windows 10/11, internet connection.
-- **Python 3.13.6** (same version as ours; other versions may install different packages).
+- **Python 3.13.6 exactly** (64-bit, from python.org; check with `py -3.13 --version`). Other versions may fail
+  to install or install different package versions, and results would not be comparable.
 - Free RAM: **about 4-4.5 GB** for the full system; **about 2.5 GB** with `--disable rag` (no Qdrant).
 - About **10 GB** free disk (Python packages, Qdrant data, KG data, model).
 - Your **own** Groq API key (free, console.groq.com) and OpenRouter API key (openrouter.ai).
@@ -31,6 +32,22 @@ Everything below is in that one folder:
   (DDInter licence: CC BY-NC-SA 4.0). Its SHA-256 is in `setup\kg_data\cdss_kg_data_SHA256.txt`.
 - `Qdrant_Symptom_RAG_Handoff_v2.tar.gz` (about 717 MB) + `CHECKSUMS_POINT_MIGRATION.txt` +
   `POINT_LEVEL_MIGRATION_VALIDATION.txt`: the Vector RAG database.
+
+## Daily limits and time - check before a batch
+- **Time:** about **3 minutes per case** with everything enabled (startup about 30 s once per run).
+- **OpenRouter:** each case uses **3 to 9 calls** (Vector RAG answer + Fusion + Optimizer, more if the optimizer
+  loops). Free models have a **daily request limit** on your account: check yours on openrouter.ai
+  (Settings / Credits) before a batch. Example: 50 cases may need up to 450 calls.
+- **Groq:** each case uses **about 22 calls** (Clarifier + Evidence Scanner); the free tier allows
+  **1,000 requests per day**, so about 40-45 cases per day per key. The pipeline prints how many Groq requests
+  are left today at startup.
+- When a limit is reached, stop and run the same batch command again later: finished cases are skipped.
+
+## Running .ps1 scripts
+If Windows says running scripts is disabled, start them like this (works without changing any setting):
+```
+powershell -ExecutionPolicy Bypass -File <script>
+```
 
 ## Setup, step by step
 Put the repo in a **short folder path**, e.g. `C:\cdss` (Windows limits paths to 260 characters and some

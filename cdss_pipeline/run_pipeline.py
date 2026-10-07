@@ -27,6 +27,7 @@ DEFAULT_TEXT = ("56 year old man with chest pain, sweating and shortness of brea
 def run(patient_text, disabled=()):
     """One case. disabled = ablation switches (rag, kg, evidence, optimizer); [] = full system."""
     disabled = config.parse_disabled(disabled)
+    wrappers.reset_case_warnings()
     graph = build_graph(disabled)
     path, final = [], None
     for mode, chunk in graph.stream(initial_state(patient_text, config.TOP_K_START, disabled),

@@ -7,6 +7,7 @@ Run from the integration folder:
 
 import copy
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -569,7 +570,14 @@ def test_clarifier_modules_come_from_new_folder(clarifier):
     assert "clinicl-text-processor1" not in str(sys.path)
 
 
-def test_clarifier_commit_unknown_never_crashes(monkeypatch, capsys):
+@pytest.fixture
+def git_clone_layout(monkeypatch, tmp_path):
+    """Behave like a local clone with its own .git and no PINNED_COMMITS.txt (works in a fresh repo copy too)."""
+    monkeypatch.setattr(wrappers, "_has_own_git", lambda folder: True)
+    monkeypatch.setattr(config, "PINNED_COMMITS_FILE", tmp_path / "no_such_file.txt")
+
+
+def test_clarifier_commit_unknown_never_crashes(monkeypatch, capsys, git_clone_layout):
     def no_git(*args, **kwargs):
         raise FileNotFoundError("git")
     monkeypatch.setattr(wrappers.subprocess, "run", no_git)
@@ -577,7 +585,18 @@ def test_clarifier_commit_unknown_never_crashes(monkeypatch, capsys):
     assert "commit unknown" in capsys.readouterr().out
 
 
-def test_clarifier_other_commit_only_warns(monkeypatch, capsys):
+def test_commit_from_pinned_file_when_no_own_git(monkeypatch, tmp_path, capsys):
+    pinned = tmp_path / "PINNED_COMMITS.txt"
+    pinned.write_text("# folder commit source\nclinical_text_clarifier  51dacaf  https://x\n", encoding="utf-8")
+    monkeypatch.setattr(config, "PINNED_COMMITS_FILE", pinned)
+    monkeypatch.setattr(wrappers, "_has_own_git", lambda folder: False)
+    monkeypatch.setattr(wrappers.subprocess, "run", lambda *a, **k: pytest.fail("git must not run"))
+    assert wrappers._git_commit(tmp_path / "clinical_text_clarifier", "51dacaf", "Clarifier") == "51dacaf"
+    assert wrappers._git_commit(tmp_path / "Medico", "", "Fusion") == "unknown"
+    assert "commit unknown" in capsys.readouterr().out
+
+
+def test_clarifier_other_commit_only_warns(monkeypatch, capsys, git_clone_layout):
     monkeypatch.setattr(wrappers.subprocess, "run",
                         lambda *a, **k: SimpleNamespace(returncode=0, stdout="abc1234\n"))
     assert wrappers._clarifier_commit() == "abc1234"
@@ -613,6 +632,8 @@ def test_run_pipeline_json_has_clarifier_details_next_to_final_output(monkeypatc
 def fake_mode(monkeypatch, tmp_path):
     """CDSS_CLARIFIER_FAKE=1: his real code with the built-in fake Groq server."""
     monkeypatch.setattr(config, "CLARIFIER_FAKE", True)
+    # his code refuses to run without a key in the environment; a fresh copy has no .env (fake server, no network)
+    monkeypatch.setenv("GROQ_API_KEY", os.getenv("GROQ_API_KEY") or "fake-test-key")
     monkeypatch.setattr(config, "GROQ_LIMITS_FILE", tmp_path / "groq_limits.json")
     monkeypatch.setattr(wrappers, "_REAL", dict(wrappers._REAL))
     monkeypatch.setattr(wrappers, "_clarifier_commit", lambda: "51dacaf")
@@ -2438,3 +2459,17 @@ def test_ranking_top10_in_final_output_and_rag_candidates(monkeypatch, calls):
     assert calls["evidence"][:3] != [] and len(fo["rag_candidates"]) >= 1
     state, _ = run_off(["kg"])
     assert state["final_output"]["kg_ranking_top10"] == []
+
+
+def test_semantic_scholar_429_warning_once_per_case():
+    import logging as _logging
+    f = wrappers._SemanticScholar429Once()
+    rec = lambda msg: _logging.LogRecord("tools.evidence_aggregator", _logging.WARNING, "x", 1, msg, (), None)
+    s2 = "Evidence source semantic_scholar_search failed: HTTPError (HTTP 429); continuing"
+    first = rec(s2)
+    assert f.filter(first) and "not shown" in first.getMessage()
+    assert not f.filter(rec(s2)) and not f.filter(rec(s2)) and f.hidden == 2
+    assert f.filter(rec("Evidence source pubmed_search failed: HTTPError (HTTP 429); continuing"))  # other sources
+    wrappers.S2_429_FILTER.shown = True
+    wrappers.reset_case_warnings()
+    assert wrappers.S2_429_FILTER.shown is False and wrappers.S2_429_FILTER.hidden == 0
